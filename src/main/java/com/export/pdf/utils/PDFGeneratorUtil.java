@@ -35,7 +35,7 @@ public class PDFGeneratorUtil {
         context.setVariable("invoice", invoice);
 
         // Render the HTML template with dynamic content
-        String htmlContent = templateEngine.process("invoice_template", context);
+        String htmlContent = templateEngine.process("invoice-template", context);
 
         // Convert HTML to PDF using iText
         try (FileOutputStream outputStream = new FileOutputStream(pdfFile)) {

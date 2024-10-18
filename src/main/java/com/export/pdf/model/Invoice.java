@@ -1,47 +1,34 @@
 package com.export.pdf.model;
 
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
  * Represents an invoice with seller and buyer details, 
  * as well as the items being sold.
  */
+@Entity
+@Table(name = "invoices")
 public class Invoice {
     
-    /**
-     * The name of the seller.
-     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     private String seller;
-    
-    /**
-     * The GSTIN (Goods and Services Tax Identification Number) of the seller.
-     */
     private String sellerGstin;
-    
-    /**
-     * The address of the seller.
-     */
     private String sellerAddress;
-    
-    /**
-     * The name of the buyer.
-     */
     private String buyer;
-    
-    /**
-     * The GSTIN of the buyer.
-     */
     private String buyerGstin;
-    
-    /**
-     * The address of the buyer.
-     */
     private String buyerAddress;
-    
-    /**
-     * A list of items included in the invoice.
-     */
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "invoice_id")
     private List<Item> items;
+
+    // New field to store creation timestamp
+    private LocalDateTime createdAt;
 
     /**
      * Calculates the total amount for the invoice based on the items' amounts.
@@ -53,6 +40,14 @@ public class Invoice {
     }
 
     // Getters and Setters
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getSeller() {
         return seller;
@@ -108,5 +103,14 @@ public class Invoice {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    // Getter and Setter for createdAt
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

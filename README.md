@@ -14,19 +14,24 @@ This project is a Spring Boot application that generates PDF based on user-provi
 ## Technologies Used
 - **Java 21**
 - **Spring Boot** (for RESTful API development)
+- **Spring Data JPA** (for database interaction)
+- **MySQL** (for RDBMS)
 - **Thymeleaf** (for HTML template rendering)
 - **iText** (for PDF generation)
 
 ### Prerequisites
 - Java Development Kit (JDK) 21 or later
+- MySQL Server
 - VS Code
 
 ### Steps to Run the Project
-   **Clone the Repository**:
+1.   **Clone the Repository**:
 ``` bash
-   git clone <repository-url>
-   cd <repository-name> 
+   git clone https://github.com/tarashdeepsingh/dynamicPdfGeneration.git
+   cd dynamicPdfGeneration
 ```
+2. **Set Up MySQL Database**:
+    - Create a database named `invoice_systems` and execute the provided SQL script **(data.sql)** to set up the necessary tables.
 
 ### API Endpoints
 **Generate Invoice**
@@ -96,6 +101,6 @@ your-project-root/
 ``` bash
 public/
  └── invoices/
-     ├── 2024-10-18_14-30-00.pdf
-     ├── 2024-10-18_14-35-00.pdf
+     ├── 20241018143000.pdf
+     ├── 20241018143500.pdf
 ```
