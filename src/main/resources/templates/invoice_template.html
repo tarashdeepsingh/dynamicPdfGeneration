@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+        }
+        .header { 
+            text-align: center; 
+            font-size: 24px; 
+            font-weight: bold; 
+        }
+
+        /* Main container table for all invoice sections */
+        .invoice-table { 
+            width: 100%; 
+            border: 1px solid black; 
+            border-collapse: collapse; 
+        }
+        .invoice-table td, .invoice-table th { 
+            border: 1px solid black; 
+            padding: 8px; 
+            vertical-align: middle; 
+        }
+
+        /* Center item, quantity, rate, and amount text */
+        .center-text {
+            text-align: center;
+        }
+
+        .invoice-section { 
+            width: 50%; 
+            padding: 8px; 
+        }
+
+        /* Bold text */
+        .bold { 
+            font-weight: bold; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Single table for both Seller/Buyer details and item information -->
+    <table class="invoice-table">
+        <!-- Seller and Buyer Info in two columns (left-aligned, unchanged) -->
+        <tr>
+            <td class="invoice-section" colspan="2">
+                <p class="bold">Seller:</p>
+                <p th:text="${invoice.seller}"></p>
+                <p th:text="${invoice.sellerAddress}"></p>
+                <p>GSTIN: <span th:text="${invoice.sellerGstin}"></span></p>
+            </td>
+            <td class="invoice-section" colspan="2">
+                <p class="bold">Buyer:</p>
+                <p th:text="${invoice.buyer}"></p>
+                <p th:text="${invoice.buyerAddress}"></p>
+                <p>GSTIN: <span th:text="${invoice.buyerGstin}"></span></p>
+            </td>
+        </tr>
+
+        <!-- Header for item details -->
+        <tr>
+            <th class="center-text">Item</th>
+            <th class="center-text">Quantity</th>
+            <th class="center-text">Rate</th>
+            <th class="center-text">Amount</th>
+        </tr>
+        <!-- Item rows with centered text -->
+        <tr th:each="item : ${invoice.items}">
+            <td class="center-text" th:text="${item.name}"></td>
+            <td class="center-text" th:text="${item.quantity}"></td>
+            <td class="center-text" th:text="${item.rate}"></td>
+            <td class="center-text" th:text="${item.amount}"></td>
+        </tr>
+    </table>
+
+    <!-- Total Amount -->
+    <div class="total" style="margin-top: 10px; float: right;">
+        <p>Total: <span th:text="${invoice.getTotalAmount()}"></span></p>
+    </div>
+
+</body>
+</html>
