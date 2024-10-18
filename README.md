@@ -3,7 +3,7 @@
 ## Overview
 This project is a Spring Boot application that generates PDF based on user-provided data. It allows users to create, download, and retrieve invoice pdf efficiently while avoiding duplicates.
 
-![Sample Invoice](public/invoices/20241018140847.pdf)
+![Sample Invoice](public/invoices/example_invoice.png)
 
 ## Features
 - Generate invoices in PDF format.
