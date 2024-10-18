@@ -51,32 +51,6 @@ public class InvoiceController {
         byte[] pdfBytes = Files.readAllBytes(pdfFile.toPath());
 
         // Return the PDF file as a downloadable response
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + pdfFile.getName())
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(pdfBytes);
-    }
-
-    @GetMapping("/download/{dateTimeStamp}")
-    public ResponseEntity<Object> downloadInvoicePdf(@PathVariable String dateTimeStamp) throws IOException {
-        // Construct the PDF file name based on the dateTimeStamp
-        String pdfFileName = dateTimeStamp + ".pdf"; 
-        File pdfFile = new File("public/invoices", pdfFileName);
-
-        if (!pdfFile.exists()) {
-            // Return 404 if the file does not exist along with a message
-            return ResponseEntity
-                    .status(404)
-                    .body("Invoice not found"); // Returning a message
-        }
-
-        // Convert the PDF file to byte array
-        byte[] pdfBytes = Files.readAllBytes(pdfFile.toPath());
-
-        // Return the PDF file as a downloadable response
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + pdfFile.getName())
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(pdfBytes);
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + pdfFile.getName()).contentType(MediaType.APPLICATION_PDF).body(pdfBytes);
     }
 }

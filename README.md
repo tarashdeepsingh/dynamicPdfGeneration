@@ -29,7 +29,7 @@ This project is a Spring Boot application that generates PDF based on user-provi
 ```
 
 ### API Endpoints
-1.  **Generate Invoice**
+**Generate Invoice**
 - POST `/api/invoice/generate`
 - Request Body Example:
 ```json
@@ -53,14 +53,6 @@ This project is a Spring Boot application that generates PDF based on user-provi
 
 - Response:
 - Returns the generated PDF file for download.
-- If the invoice has already been generated, it returns a message: "Invoice already generated"
-
-2.  **Download Invoice**
-- GET  `/api/invoice/download/{dateTimeStamp}`
-- Path Variable: dateTimeStamp - The dateTimeStamp of the invoice file you want to download.
-- Response:
-- Returns the PDF file for download.
-- If the invoice is not found, it returns a message: "Invoice not found".
 
 ## Project Directory Structure
 ``` bash
@@ -87,7 +79,7 @@ your-project-root/
 │   │   │               └── PdfApplication.java 
 │   │   └── resources/
 │   │       ├── templates/
-│   │       │   └── invoice_template.html
+│   │       │   └── invoice-template.html
 │   │       └── application.properties
 │   └── test/
 │       └── java/
